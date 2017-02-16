@@ -124,6 +124,7 @@
 
 								$travel_hour = $hora . ":" . $minuto;
 
+								$dao->removerIda($chat_id, $user_id);
 								$dao->adicionarIda($chat_id, $user_id, $username, $travel_hour);
 
 								TelegramConnect::sendMessage($chat_id, "@" . $username . " oferece carona de ida às " . $travel_hour);
@@ -156,6 +157,7 @@
 
 								$travel_hour = $hora . ":" . $minuto;
 
+								$dao->removerVolta($chat_id, $user_id);
 								$dao->adicionarVolta($chat_id, $user_id, $username, $travel_hour);
 
 								TelegramConnect::sendMessage($chat_id, "@" . $username . " oferece carona de volta às " . $travel_hour);
