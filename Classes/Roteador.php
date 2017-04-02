@@ -83,6 +83,8 @@
 					case 'help':
 						$help = "Utilize este Bot para agendar as caronas. A utilização é super simples e através de comandos:
 
+								/dia --> Este comando serve para exibir todas as caronas do dia.
+
 								/ida [horario] --> Este comando serve para definir um horário que você está INDO para o FUNDÃO. Ex: /ida 10:00
 								Caso não seja colocado o parâmetro do horário (Ex: /ida) o bot irá apresentar a lista com as caronas registradas para o trajeto.
 
@@ -165,6 +167,21 @@
 								TelegramConnect::sendMessage($chat_id, "Horário inválido.");
 							}
 						}
+						break;
+
+					case 'dia':
+						$resultado = $dao->getListaIda($chat_id);
+						$texto = "<b>Ida para o Fundão</b>\n";
+						foreach ($resultado as $carona){
+							$texto .= (string)$carona . "\n";
+						}
+						$resultado = $dao->getListaVolta($chat_id);
+						$texto .= "<b>Volta do Fundão</b>\n";
+						foreach ($resultado as $carona){
+							$texto .= (string)$carona . "\n";
+						}
+
+						TelegramConnect::sendMessage($chat_id, $texto);
 						break;
 
 					case 'remover':
