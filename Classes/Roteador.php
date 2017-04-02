@@ -61,19 +61,17 @@
 
 									-Nome e foto: libere a exibição do nome e foto no Telegram. Isso oferece mais segurança para os motoristas. Caso não exiba, existe grande chance de você ser removido por engano considerado inativo.
 
-									-Horários: Ao oferecer carona para ir ao fundão, diga o horário que você pretende chegar no fundão. Ao oferecer carona para voltar ao Méier, diga o horário que você pretende sair do fundão.
+									-Horários: Ao oferecer carona de ida, diga o horário que você pretende chegar. Ao oferecer carona para voltar, diga o horário que você pretende sair.
 
 									-Carona para o dia seguinte: espere um horário que não atrapalhe quem está  pedindo carona para voltar da faculdade. Sugestão: ofereça após as 19h
 
-									-Valor: Não é pagamento, ninguém é obrigado a pagar como também ninguém é obrigado a dar carona. É uma ajuda de custos. O valor que a maioria doa é 3,50. Alguns 4, outros 3. Sugiro o valor de 3,50 por passageiro, independente se for 1 ou 5 no carro, pra não gerar concorrência desnecessária.
+									-Valor: Não é pagamento, ninguém é obrigado a pagar como também ninguém é obrigado a dar carona. É uma ajuda de custos. O valor que a maioria doa é 3,50. Alguns 4, outros 3. O sugerido é o valor de 3,50 por passageiro, independente se for 1 ou 5 no carro, pra não gerar concorrência desnecessária.
 
 									-Não seja ganancioso, seu carro não é táxi.
 
 									-Não seja mesquinho, você está indo para a  faculdade no conforto e rapidez, colabore com o motorista.
 
 									-Ao oferecer ou pedir carona, utilize o verbo 'ir' se o sentido for meier-Fundão e o verbo 'voltar' se o sentido for fundao-Méier.
-
-									-Participe ativamente do grupo: seja ativo e pegue ou ofereça caronas constantemente, caso contrário você estará tirando a vaga de alguém que pode precisar mais que você.
 
 									-Se for removido: não fique chateado. Se foi algum equívoco, fale com algum admin e te colocam de volta.";
 
@@ -85,13 +83,14 @@
 
 								/dia --> Este comando serve para exibir todas as caronas do dia.
 
-								/ida [horario] --> Este comando serve para definir um horário que você está INDO para o FUNDÃO. Ex: /ida 10:00
+								/ida [horario] --> Este comando serve para definir o horário que você pretende CHEGAR ao seu DESTINO. Ex: /ida 10:00
 								Caso não seja colocado o parâmetro do horário (Ex: /ida) o bot irá apresentar a lista com as caronas registradas para o trajeto.
 
 								/volta [horario] --> Este comando serve para definir um horário que você está VOLTANDO para o SEU BAIRRO. Ex: /volta 10:00
 								Caso não seja colocado o parâmetro do horário (Ex: /volta) o bot irá apresentar a lista com as caronas registradas para o trajeto.
 
-								/remover [ida/volta] --> Comando utilizado para remover a carona da lista. SEMPRE REMOVA a carona depois dela ter sido realizada. O sistema não faz isso automaticamente. Ex: /remover ida";
+								/remover [ida/volta] --> Comando utilizado para remover a carona da lista. Ex: /remover ida
+								O sistema remove caronas automáticamente após 24 horas, porém é bom removê-las assim que sair para evitar confusão.";
 						
 						TelegramConnect::sendMessage($chat_id, $help);
 						break;
