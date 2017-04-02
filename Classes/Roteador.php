@@ -167,6 +167,21 @@
 						}
 						break;
 
+					case 'dia':
+						$resultado = $dao->getListaIda($chat_id);
+						$texto = "<b>Ida para o Fundão</b>\n";
+						foreach ($resultado as $carona){
+							$texto .= (string)$carona . "\n";
+						}
+						$resultado = $dao->getListaVolta($chat_id);
+						$texto .= "<b>Volta do Fundão</b>\n";
+						foreach ($resultado as $carona){
+							$texto .= (string)$carona . "\n";
+						}
+
+						TelegramConnect::sendMessage($chat_id, $texto);
+						break;
+
 					case 'remover':
 						if($args[1] == 'ida'){
 							$dao->removerIda($chat_id, $user_id);
