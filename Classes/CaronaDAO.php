@@ -13,8 +13,11 @@
 		const REMOVE_QUERY_IDA = "delete from public.caroneiros where chat_id = :chat_id and user_id = :user_id and route = '0'::bit(1)";
 		const REMOVE_QUERY_VOLTA = "delete from public.caroneiros where chat_id = :chat_id and user_id = :user_id and route = '1'::bit(1)";
 	
-        private $db;	
-		
+		const REMOVE_EXPIRED_QUERY = "delete from Caroneiros where now() - added > interval '1 DAY'";
+	
+	    
+	private $db;
+	    
         public function __construct(){
             $this->db = new Database();
         }
@@ -77,6 +80,12 @@
 			error_log("Erro: " . $this->db->getError());
 		}
 		
+	    	public function removerViagensExpiradas(){
+ 			$this->db->query(CaronaDAO::REMOVE_EXPIRED_QUERY);
+ 			$this->db->execute();
+ 			error_log("Erro: " . $this->db->getError());			
+ 		}
+	    
 		private function acertarStringHora($travel_hour){
 			return $travel_hour .= ":00";
 		}
