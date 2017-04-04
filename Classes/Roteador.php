@@ -104,6 +104,7 @@
 					/*Comandos de viagem*/
 					case 'ida':
 						if (!isset($args[1])) {
+							$dao->removerViagensExpiradas();
 							$resultado = $dao->getListaIda($chat_id);
 
 							$texto = "<b>Ida para o Fundão</b>\n";
@@ -137,6 +138,7 @@
 
 					case 'volta':
 						if (!isset($args[1])) {
+							$dao->removerViagensExpiradas();
 							$resultado = $dao->getListaVolta($chat_id);
 
 							$texto = "<b>Volta do Fundão</b>\n";
