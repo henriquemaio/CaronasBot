@@ -65,7 +65,7 @@
 
 									-Carona para o dia seguinte: espere um horário que não atrapalhe quem está  pedindo carona para voltar da faculdade. Sugestão: ofereça após as 19h
 
-									-Valor: Não é pagamento, ninguém é obrigado a pagar como também ninguém é obrigado a dar carona. É uma ajuda de custos. O valor que a maioria doa é 3,50. Alguns 4, outros 3. O sugerido é o valor de 3,50 por passageiro, independente se for 1 ou 5 no carro, pra não gerar concorrência desnecessária.
+									-Valor: Não é pagamento, ninguém é obigado a pagar como também ninguém é obrigado a dar carona. É uma ajuda de custos. O valor que a maioria doa é 4,00. Alguna um pouco mais ou menos, mas o recomendado é o valor de 4,00 por passageiro, independente se for 1 ou 5 no carro, pra não gerar concorrência desnecessária.
 
 									-Não seja ganancioso, seu carro não é táxi.
 
