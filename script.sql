@@ -3,6 +3,7 @@ create table Caroneiros(
 	chat_id int NOT NULL,
 	user_id int NOT NULL,
 	username varchar(128),
+	location varchar(128),
 	travel_hour time
 );
 

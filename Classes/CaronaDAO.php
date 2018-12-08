@@ -4,8 +4,8 @@
 
     class CaronaDAO{
 
-		const INSERT_QUERY_IDA = "insert into public.caroneiros (chat_id, user_id, username, travel_hour, route) values (:chat_id, :user_id, :username, :travel_hour, '0'::bit(1))";
-		const INSERT_QUERY_VOLTA = "insert into public.caroneiros (chat_id, user_id, username, travel_hour, route) values (:chat_id, :user_id, :username, :travel_hour, '1'::bit(1))";
+		const INSERT_QUERY_IDA = "insert into public.caroneiros (chat_id, user_id, username, travel_hour, location, route) values (:chat_id, :user_id, :username, :travel_hour, :location, '0'::bit(1))";
+		const INSERT_QUERY_VOLTA = "insert into public.caroneiros (chat_id, user_id, username, travel_hour, location, route) values (:chat_id, :user_id, :username, :travel_hour, :location, '1'::bit(1))";
 		
 		const LISTA_QUERY_IDA = "select * from public.caroneiros where chat_id = :chat_id and route = '0'::bit(1) ORDER BY travel_hour ASC;";
 		const LISTA_QUERY_VOLTA = "select * from public.caroneiros where chat_id = :chat_id and route = '1'::bit(1) ORDER BY travel_hour ASC;";
@@ -36,13 +36,14 @@
 			return $this->montaListaCaronas($this->db->resultSet());
 		}
 				
-		public function adicionarIda($chat_id, $user_id, $username, $travel_hour){
+		public function adicionarIda($chat_id, $user_id, $username, $location, $travel_hour){
 			$travel_hour = $this->acertarStringHora($travel_hour);
 			
 			$this->db->query(CaronaDAO::INSERT_QUERY_IDA);
 			$this->db->bind(":chat_id", $chat_id);
 			$this->db->bind(":user_id", $user_id);
 			$this->db->bind(":username", $username);
+			$this->db->bind(":location", $location);
 			$this->db->bind(":travel_hour", $travel_hour);
 						
 			$this->db->execute();
@@ -58,13 +59,14 @@
 			error_log("Erro: " . $this->db->getError());
 		}
 		
-		public function adicionarVolta($chat_id, $user_id, $username, $travel_hour){
+		public function adicionarVolta($chat_id, $user_id, $username, $location, $travel_hour){
 			$travel_hour = $this->acertarStringHora($travel_hour);
 			
 			$this->db->query(CaronaDAO::INSERT_QUERY_VOLTA);
 			$this->db->bind(":chat_id", $chat_id);
 			$this->db->bind(":user_id", $user_id);
 			$this->db->bind(":username", $username);
+			$this->db->bind(":location", $location);
 			$this->db->bind(":travel_hour", $travel_hour);
 						
 			$this->db->execute();

@@ -54,8 +54,7 @@
 				switch ($comando){
 					/*comandos padrão*/
 					case 'regras':
-						$regras = "<b>Preencha o Formulário abaixo</b>
-									Formulário: http://goo.gl/forms/OsTKcSLW2O
+						$regras = "<b>Seja Bem-vindo!</b>
 
 									Este documento descreve como o grupo costuma funcionar para não ficar muito bagunçado. São conselhos baseados no bom senso e experiência adquirida.
 
@@ -71,7 +70,7 @@
 
 									-Não seja mesquinho, você está indo para a  faculdade no conforto e rapidez, colabore com o motorista.
 
-									-Ao oferecer ou pedir carona, utilize o verbo 'ir' se o sentido for meier-Fundão e o verbo 'voltar' se o sentido for fundao-Méier.
+									-Ao oferecer ou pedir carona, utilize o verbo 'ir' se o sentido for Origem->Fundão e o verbo 'voltar' se o sentido for Fundão->Destino.
 
 									-Se for removido: não fique chateado. Se foi algum equívoco, fale com algum admin e te colocam de volta.";
 
@@ -83,10 +82,10 @@
 
 								/dia --> Este comando serve para exibir todas as caronas do dia.
 
-								/ida [horario] --> Este comando serve para definir o horário que você pretende CHEGAR ao seu DESTINO. Ex: /ida 10:00
+								/ida [horario] [Bairro] --> Este comando serve para definir o horário que você pretende CHEGAR ao seu DESTINO. Ex: /ida 10:00 Méier
 								Caso não seja colocado o parâmetro do horário (Ex: /ida) o bot irá apresentar a lista com as caronas registradas para o trajeto.
 
-								/volta [horario] --> Este comando serve para definir um horário que você está VOLTANDO para o SEU BAIRRO. Ex: /volta 10:00
+								/volta [horario] [Bairro] --> Este comando serve para definir um horário que você está VOLTANDO para o SEU BAIRRO. Ex: /volta 10:00 Méier
 								Caso não seja colocado o parâmetro do horário (Ex: /volta) o bot irá apresentar a lista com as caronas registradas para o trajeto.
 
 								/remover [ida/volta] --> Comando utilizado para remover a carona da lista. Ex: /remover ida
@@ -114,10 +113,15 @@
 
 							TelegramConnect::sendMessage($chat_id, $texto);
 						}
-						elseif (isset($args[1])) {
-							$horarioRaw = $args[1];
+						elseif (isset($args[1]) || isset($args[2])) {
+							if (count($args) == 1) {
+								$horarioRaw = $args[1];
+								$location = null;
+							} else {
+								$horarioRaw = $args[2];
+								$location = $args[1];
+							}
 							$horarioRegex = '/^(?P<hora>[01]?\d|2[0-3])(?::(?P<minuto>[0-5]\d))?$/';
-
 							$horarioValido = preg_match($horarioRegex, $horarioRaw, $resultado);
 
 							if ($horarioValido){
@@ -125,13 +129,15 @@
 								$minuto = isset($resultado['minuto']) ? $resultado['minuto'] : "00";
 
 								$travel_hour = $hora . ":" . $minuto;
-
 								$dao->removerIda($chat_id, $user_id);
-								$dao->adicionarIda($chat_id, $user_id, $username, $travel_hour);
-
-								TelegramConnect::sendMessage($chat_id, "@" . $username . " oferece carona de ida às " . $travel_hour);
+								$dao->adicionarIda($chat_id, $user_id, $username, $location, $travel_hour);
+								if($location == null) {
+									TelegramConnect::sendMessage($chat_id, "@" . $username . " oferece carona de ida às " . $travel_hour);
+								} else {
+									TelegramConnect::sendMessage($chat_id, "@" . $username . " oferece carona de ida às " . $travel_hour . " (" . $location . ")" );
+								}
 							}else{
-								TelegramConnect::sendMessage($chat_id, "Horário inválido.");
+								TelegramConnect::sendMessage($chat_id, "Comando inválido.");
 							}
 						}
 						break;
@@ -148,10 +154,15 @@
 
 							TelegramConnect::sendMessage($chat_id, $texto);
 						}
-						elseif (isset($args[1])) {
-							$horarioRaw = $args[1];
-							$horarioRegex = '/^(?P<hora>[0-2]?\d)(:(?P<minuto>[0-5]\d))?$/';
-
+						elseif (isset($args[1]) || isset($args[2])) {
+							if (count($args) == 1) {
+								$horarioRaw = $args[1];
+								$location = null;
+							} else {
+								$horarioRaw = $args[2];
+								$location = $args[1];
+							}
+							$horarioRegex = '/^(?P<hora>[01]?\d|2[0-3])(?::(?P<minuto>[0-5]\d))?$/';
 							$horarioValido = preg_match($horarioRegex, $horarioRaw, $resultado);
 
 							if ($horarioValido){
@@ -161,10 +172,14 @@
 								$travel_hour = $hora . ":" . $minuto;
 
 								$dao->removerVolta($chat_id, $user_id);
-								$dao->adicionarVolta($chat_id, $user_id, $username, $travel_hour);
+								$dao->adicionarVolta($chat_id, $user_id, $username, $location, $travel_hour);
 
-								TelegramConnect::sendMessage($chat_id, "@" . $username . " oferece carona de volta às " . $travel_hour);
-							}else{
+								if ($location == null) {
+									TelegramConnect::sendMessage($chat_id, "@" . $username . " oferece carona de volta às " . $travel_hour);
+								} else {
+									TelegramConnect::sendMessage($chat_id, "@" . $username . " oferece carona de volta às " . $travel_hour . " (" . $location . ")" );
+								}
+							} else{
 								TelegramConnect::sendMessage($chat_id, "Horário inválido.");
 							}
 						}
