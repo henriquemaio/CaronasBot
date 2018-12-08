@@ -7,7 +7,7 @@ Funcionalidades:
   - Exibir lista com as caronas
 
 ### Version
-1.0
+1.1
 
 ### Tech
 
