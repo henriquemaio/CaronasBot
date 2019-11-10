@@ -54,24 +54,22 @@
 				switch ($comando){
 					/*comandos padrão*/
 					case 'regras':
-						$regras = "<b>Preencha o Formulário abaixo</b>
-									Formulário: http://goo.gl/forms/OsTKcSLW2O
-
+						$regras = "<b>Regras:</b>
 									Este documento descreve como o grupo costuma funcionar para não ficar muito bagunçado. São conselhos baseados no bom senso e experiência adquirida.
 
-									-Nome e foto: libere a exibição do nome e foto no Telegram. Isso oferece mais segurança para os motoristas. Caso não exiba, existe grande chance de você ser removido por engano considerado inativo.
+									-Nome e foto: libere a exibição do nome e foto no Telegram. Isso oferece mais segurança para os motoristas.
 
 									-Horários: Ao oferecer carona de ida, diga o horário que você pretende chegar. Ao oferecer carona para voltar, diga o horário que você pretende sair.
 
-									-Carona para o dia seguinte: espere um horário que não atrapalhe quem está  pedindo carona para voltar da faculdade. Sugestão: ofereça após as 19h
+									-Carona para o dia seguinte: espere um horário que não atrapalhe quem está pedindo carona para voltar. Sugestão: ofereça após as 19h
 
-									-Valor: Não é pagamento, ninguém é obigado a pagar como também ninguém é obrigado a dar carona. É uma ajuda de custos. O valor que a maioria doa é 4,00. Alguns um pouco mais ou menos, mas o recomendado é o valor de 4,00 por passageiro, independente se for 1 ou 5 no carro, pra não gerar concorrência desnecessária.
+									-Valor: Não é pagamento, ninguém é obrigado a pagar como também ninguém é obrigado a dar carona. É uma ajuda de custos. O recomendado é o valor do custo das passagens de ônibus por passageiro, independente se for 1 ou 5 no carro, pra não gerar concorrência desnecessária.
 
 									-Não seja ganancioso, seu carro não é táxi.
 
-									-Não seja mesquinho, você está indo para a  faculdade no conforto e rapidez, colabore com o motorista.
+									-Não seja mesquinho, você está indo para o seu destino no conforto e rapidez, colabore com o motorista.
 
-									-Ao oferecer ou pedir carona, utilize o verbo 'ir' se o sentido for meier-Fundão e o verbo 'voltar' se o sentido for fundao-Méier.
+									-Ao oferecer ou pedir carona, utilize o verbo 'ir' se o sentido for SeuBairro-Destino e o verbo 'voltar' se o sentido for Origem-SeuBairro.
 
 									-Se for removido: não fique chateado. Se foi algum equívoco, fale com algum admin e te colocam de volta.";
 
