@@ -12,7 +12,7 @@ class Config{
         self::$botConfigs["ApiKeyTelegram"] = array_key_exists("API_KEY_TELEGRAM", $_ENV) ? $_ENV["API_KEY_TELEGRAM"] : NULL;
         self::$botConfigs["ApiRequestUrl"] = array_key_exists("API_KEY_TELEGRAM", $_ENV) ? 'https://api.telegram.org/bot' . $_ENV["API_KEY_TELEGRAM"] : NULL;
         
-        dbopts = parse_url(getenv('DATABASE_URL'));
+        $dbopts = parse_url(getenv('DATABASE_URL'));
         
         self::$botConfigs["DBHost"] = $dbopts["host"];
         self::$botConfigs["DBUser"] = $dbopts["user"];
