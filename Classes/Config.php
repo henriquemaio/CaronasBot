@@ -11,10 +11,13 @@ class Config{
         self::$botConfigs["botName"] = array_key_exists("BOT_NAME", $_ENV) ? $_ENV["BOT_NAME"] : "botName";
         self::$botConfigs["ApiKeyTelegram"] = array_key_exists("API_KEY_TELEGRAM", $_ENV) ? $_ENV["API_KEY_TELEGRAM"] : NULL;
         self::$botConfigs["ApiRequestUrl"] = array_key_exists("API_KEY_TELEGRAM", $_ENV) ? 'https://api.telegram.org/bot' . $_ENV["API_KEY_TELEGRAM"] : NULL;
-        self::$botConfigs["DBHost"] = array_key_exists("DB_HOST", $_ENV) ? $_ENV["DB_HOST"] : NULL;
-        self::$botConfigs["DBUser"] = array_key_exists("DB_USER", $_ENV) ? $_ENV["DB_USER"] : NULL;
-        self::$botConfigs["DBPass"] = array_key_exists("DB_PASS", $_ENV) ? $_ENV["DB_PASS"] : NULL;
-        self::$botConfigs["DBName"] = array_key_exists("DB_NAME", $_ENV) ? $_ENV["DB_NAME"] : NULL;
+        
+        dbopts = parse_url(getenv('DATABASE_URL'));
+        
+        self::$botConfigs["DBHost"] = $dbopts["host"];
+        self::$botConfigs["DBUser"] = $dbopts["user"];
+        self::$botConfigs["DBPass"] = $dbopts["pass"];
+        self::$botConfigs["DBName"] = ltrim($dbopts["path"],'/');
     }
 }
 
